@@ -1,0 +1,58 @@
+{
+  "version": "2026.4.15",
+  "gateway": {
+    "port": 18789,
+    "token": "YOUR_GATEWAY_TOKEN",
+    "workers": 4
+  },
+  "agents": {
+    "defaults": {
+      "model": "gemini-3-flash",
+      "bootstrapMaxChars": 25000,
+      "bootstrapTotalMaxChars": 60000
+    },
+    "subagents": {
+      "model": "gemini-3-flash"
+    },
+    "entries": {
+      "main": { "model": "gemini-3-flash" },
+      "thinker": { "model": "gemini-3.1-pro-preview" },
+      "research-expert": { "model": "gemini-3.1-pro-search" },
+      "image-gen": { "model": "gemini-3.1-flash-image-preview" },
+      "backend-dev": {},
+      "frontend-dev": {},
+      "fullstack-dev": {},
+      "social-operator": {},
+      "wordpress-manager": {},
+      "airco2-studio": {}
+    }
+  },
+  "channels": {
+    "telegram": {
+      "token": "YOUR_BOT_TOKEN",
+      "groupChatId": "YOUR_GROUP_CHAT_ID",
+      "groupAllowFrom": ["YOUR_GROUP_CHAT_ID"],
+      "allowFrom": ["YOUR_USER_ID"]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "lossless-claw": {
+        "enabled": true,
+        "slot": "contextEngine",
+        "config": {
+          "summaryModel": "gemini-3-flash",
+          "incrementalMaxDepth": 200
+        }
+      }
+    }
+  },
+  "memorySearch": {
+    "provider": "ollama",
+    "model": "nomic-embed-text",
+    "baseUrl": "http://localhost:11434"
+  },
+  "cron": {
+    "file": "cron/jobs.json"
+  }
+}

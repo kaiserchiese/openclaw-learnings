@@ -1,0 +1,64 @@
+# LiteLLM Proxy Configuration
+# Sits between OpenClaw and model providers, enabling:
+# - Unified API interface for multiple providers
+# - Request logging and cost tracking
+# - Failover and load balancing
+
+model_list:
+  # Primary: Gemini Flash (90% of traffic)
+  - model_name: gemini-3-flash
+    litellm_params:
+      model: vertex_ai/gemini-3-flash
+      vertex_project: YOUR_GCP_PROJECT
+      vertex_location: global
+      vertex_credentials: /path/to/service-account.json
+      timeout: 60
+
+  # Deep reasoning (thinker agent only)
+  - model_name: gemini-3.1-pro-preview
+    litellm_params:
+      model: vertex_ai/gemini-3.1-pro-preview
+      vertex_project: YOUR_GCP_PROJECT
+      vertex_location: global
+      vertex_credentials: /path/to/service-account.json
+      timeout: 120
+
+  # Search-grounded (research agent only)
+  - model_name: gemini-3.1-pro-search
+    litellm_params:
+      model: vertex_ai/gemini-3.1-pro-search
+      vertex_project: YOUR_GCP_PROJECT
+      vertex_location: global
+      vertex_credentials: /path/to/service-account.json
+      timeout: 90
+
+  # Image generation
+  - model_name: gemini-3.1-flash-image-preview
+    litellm_params:
+      model: vertex_ai/gemini-3.1-flash-image-preview
+      vertex_project: YOUR_GCP_PROJECT
+      vertex_location: global
+      vertex_credentials: /path/to/service-account.json
+      timeout: 60
+
+  # Local model (free, for grunt work)
+  - model_name: ollama/qwen2.5:3b
+    litellm_params:
+      model: ollama/qwen2.5:3b
+      api_base: http://localhost:11434
+      timeout: 30
+
+  # Fallback provider (OpenRouter)
+  - model_name: openrouter-fallback
+    litellm_params:
+      model: openrouter/google/gemini-3-flash
+      api_key: YOUR_OPENROUTER_KEY
+      timeout: 60
+
+litellm_settings:
+  drop_params: true
+  num_retries: 2
+  request_timeout: 60
+
+general_settings:
+  master_key: YOUR_LITELLM_MASTER_KEY
