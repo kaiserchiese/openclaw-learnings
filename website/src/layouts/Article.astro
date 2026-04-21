@@ -1,0 +1,78 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+}
+
+const { title, description, category } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={`${title} — OpenClaw Learnings`} description={description}>
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-12">
+      {category && (
+        <a href={`${base}${category}/`} class="text-accent font-mono text-sm uppercase tracking-widest hover:text-accent/80 transition-colors">
+          ← {category}
+        </a>
+      )}
+      <h1 class="text-4xl md:text-5xl font-black mt-3 leading-tight">{title}</h1>
+      {description && <p class="text-xl text-text-muted mt-4 leading-relaxed">{description}</p>}
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .prose h2 {
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-accent);
+  }
+
+  .prose p {
+    margin: 1rem 0;
+    line-height: 1.75;
+    color: oklch(80% 0 0);
+  }
+
+  .prose ul, .prose ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin: 0.5rem 0;
+    line-height: 1.65;
+    color: oklch(80% 0 0);
+  }
+
+  .prose ul li::marker {
+    color: var(--color-accent-dim);
+  }
+
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .prose hr {
+    border-color: var(--color-border);
+    margin: 2.5rem 0;
+  }
+</style>

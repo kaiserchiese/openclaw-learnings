@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const patterns = await getCollection('patterns');
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title="Patterns — OpenClaw Learnings">
+  <div class="max-w-4xl mx-auto px-6 py-20">
+    <h1 class="text-4xl font-black mb-4">Patterns</h1>
+    <p class="text-text-muted text-lg mb-12">Hard-won architecture decisions from 4+ months in production.</p>
+
+    <div class="space-y-4">
+      {patterns.map(entry => (
+        <a href={`${base}patterns/${entry.id}/`} class="group block p-6 bg-surface-raised border border-border rounded-xl hover:border-accent/50 transition-all">
+          <h2 class="font-bold text-xl group-hover:text-accent transition-colors">{entry.data.title}</h2>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

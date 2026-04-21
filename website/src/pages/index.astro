@@ -1,0 +1,188 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title="OpenClaw Learnings — 21 AI Agents, $7/month">
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-16 relative">
+      <div class="max-w-3xl">
+        <p class="font-mono text-accent text-sm tracking-widest uppercase mb-4">Field notes from production</p>
+        <h1 class="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight">
+          21 AI agents.<br />
+          <span class="text-text-muted">50+ cron jobs.</span><br />
+          <span class="text-accent">$7/month.</span>
+        </h1>
+        <p class="text-xl text-text-muted mt-8 leading-relaxed max-w-2xl">
+          Everything we learned running a production multi-agent AI system on a single Windows server — the architecture that worked, the disasters that didn't, and the optimizations that brought costs from $45/month to $7.
+        </p>
+        <p class="text-text-muted/60 mt-4 text-sm">None of this is theory. Every pattern here came from breaking something first.</p>
+
+        <div class="flex gap-4 mt-10">
+          <a href={`${base}quick-start/`} class="px-6 py-3 bg-accent text-surface font-semibold rounded-lg hover:brightness-110 transition-all">
+            Get Started
+          </a>
+          <a href="https://github.com/kaiserchiese/openclaw-learnings" target="_blank" class="px-6 py-3 border border-border text-text-muted rounded-lg hover:border-accent hover:text-accent transition-all">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="border-y border-border bg-surface-raised/50">
+    <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-5 gap-8">
+      {[
+        { value: '21', label: 'Agents' },
+        { value: '50+', label: 'Cron Jobs' },
+        { value: '$7', label: '/month' },
+        { value: '99%', label: 'Uptime' },
+        { value: '5mo', label: 'In Production' },
+      ].map(stat => (
+        <div class="text-center">
+          <div class="text-3xl font-black text-accent">{stat.value}</div>
+          <div class="text-sm text-text-muted mt-1">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-black mb-2">The Setup</h2>
+    <p class="text-text-muted mb-10">One server. Consumer hardware. Full AI-powered dev + ops.</p>
+
+    <div class="bg-surface-raised border border-border rounded-xl p-8 font-mono text-sm leading-relaxed overflow-x-auto">
+      <pre class="!bg-transparent !border-0 !p-0"><code class="!bg-transparent">Windows Server 2025 | 16GB RAM | GTX 1080
+├── <span class="text-accent">OpenClaw</span> (agent orchestration)
+├── <span class="text-accent">LiteLLM</span> (model proxy → Vertex AI / Ollama / OpenRouter)
+├── <span class="text-warn">21 specialized agents</span> (dev, research, social, content, finance...)
+├── <span class="text-warn">50+ automated cron jobs</span>
+├── Docker (Mission Control, SearXNG, databases)
+├── Ollama (local embeddings + small models)
+└── Telegram (control plane + notifications)</code></pre>
+    </div>
+  </section>
+
+  <!-- Patterns -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-black mb-2">Patterns</h2>
+    <p class="text-text-muted mb-10">Hard-won architecture decisions from 4+ months in production.</p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      {[
+        { title: 'Multi-Agent Orchestration', desc: 'Central router, sub-agents can\'t call each other, IF/ELSE routing beats LLM judgment', href: `${base}patterns/multi-agent-orchestration/` },
+        { title: 'Cost Optimization', desc: 'Model tiering, silent crons, local embeddings — $45 → $7/month', href: `${base}patterns/cost-optimization/` },
+        { title: 'Telegram Integration', desc: 'Forum topics as multi-channel control plane, 300 → 20 messages/day', href: `${base}patterns/telegram-integration/` },
+        { title: 'Memory Management', desc: 'Persistent memory, dreaming with limits, self-improvement loops', href: `${base}patterns/memory-management/` },
+        { title: 'Windows Server Setup', desc: 'NSSM, path gotchas, RAM budgeting, Docker on Windows', href: `${base}patterns/windows-server-setup/` },
+        { title: 'Claude Code Workflow', desc: 'Rules, hooks, skills, memory, agent delegation — patterns from daily use', href: `${base}patterns/claude-code-workflow/` },
+        { title: 'Claude Code + OpenClaw', desc: 'Interactive dev + autonomous ops — the full $27/month stack', href: `${base}patterns/claude-code-plus-openclaw/` },
+      ].map(pattern => (
+        <a href={pattern.href} class="group block p-6 bg-surface-raised border border-border rounded-xl hover:border-accent/50 transition-all">
+          <h3 class="font-bold text-lg group-hover:text-accent transition-colors">{pattern.title}</h3>
+          <p class="text-text-muted text-sm mt-2 leading-relaxed">{pattern.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-black mb-2">Use Cases</h2>
+    <p class="text-text-muted mb-10">Real projects running on this stack right now.</p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      {[
+        { title: 'Boxing Data Platform', metric: '11K fighters, 19K matches', desc: 'Scrape, match, and analyze amateur boxing data autonomously', href: `${base}use-cases/boxing-data-platform/` },
+        { title: 'Legal AI Platform', metric: '440K docs, 6.9M embeddings', desc: 'Ingest and search government legal documents with semantic search', href: `${base}use-cases/legal-ai-platform/` },
+        { title: 'Blog Pipeline', metric: '$0.05/day, fully autonomous', desc: 'Research → write → image → publish → promote — zero human input', href: `${base}use-cases/blog-pipeline/` },
+        { title: 'Social Automation', metric: '120 tweets/month, $0.15/month', desc: 'Multi-platform posting with AI personality via Playwright', href: `${base}use-cases/social-automation/` },
+      ].map(uc => (
+        <a href={uc.href} class="group block p-6 bg-surface-raised border border-border rounded-xl hover:border-accent/50 transition-all">
+          <div class="flex items-start justify-between">
+            <h3 class="font-bold text-lg group-hover:text-accent transition-colors">{uc.title}</h3>
+            <span class="text-xs font-mono text-cost bg-cost/10 px-2 py-1 rounded-md shrink-0 ml-2">{uc.metric}</span>
+          </div>
+          <p class="text-text-muted text-sm mt-2 leading-relaxed">{uc.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Cost Comparison -->
+  <section class="border-y border-border bg-surface-raised/30">
+    <div class="max-w-6xl mx-auto px-6 py-20">
+      <h2 class="text-3xl font-black mb-2">The Cost Story</h2>
+      <p class="text-text-muted mb-10">From $45/month to $7/month in 5 months. Here's the breakdown.</p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-surface border border-border rounded-xl">
+          <div class="text-4xl font-black text-accent">$7</div>
+          <div class="text-sm text-text-muted mt-1">OpenClaw (Vertex AI)</div>
+          <p class="text-xs text-text-muted/60 mt-3">21 agents, 50+ crons. Gemini Flash for 90% of tasks.</p>
+        </div>
+        <div class="p-6 bg-surface border border-border rounded-xl">
+          <div class="text-4xl font-black text-accent">$20</div>
+          <div class="text-sm text-text-muted mt-1">Claude Code (Anthropic)</div>
+          <p class="text-xs text-text-muted/60 mt-3">All interactive development. Code, review, architecture.</p>
+        </div>
+        <div class="p-6 bg-surface border border-border rounded-xl">
+          <div class="text-4xl font-black text-accent">$0</div>
+          <div class="text-sm text-text-muted mt-1">Infrastructure</div>
+          <p class="text-xs text-text-muted/60 mt-3">Own server. Ollama for embeddings. Docker for services.</p>
+        </div>
+      </div>
+
+      <p class="text-center text-text-muted mt-8">
+        <span class="text-2xl font-black text-text">$27/month total</span>
+        <span class="text-sm block mt-1">vs $3,000-5,000/month for equivalent human roles</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Timeline teaser -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-black mb-2">5 Months of Lessons</h2>
+    <p class="text-text-muted mb-10">Each month had a theme — usually dictated by whatever broke hardest.</p>
+
+    <div class="space-y-4">
+      {[
+        { month: 'Month 1', title: '"It works!"', lesson: 'Getting things running. 7 agents, $45/month.', color: 'text-accent' },
+        { month: 'Month 2', title: '"Why is it so expensive?"', lesson: 'Cost optimization. Flash for 90% of tasks: $45 → $8.', color: 'text-warn' },
+        { month: 'Month 3', title: '"Why is the server unresponsive?"', lesson: 'RAM management. AppThrottle saved our server.', color: 'text-red-400' },
+        { month: 'Month 4', title: '"Telegram is too noisy"', lesson: 'Notification management. 300 → 20 messages/day.', color: 'text-purple-400' },
+        { month: 'Month 5', title: '"Let\'s make it autonomous"', lesson: 'Ralph-loop, Mission Control, public launch.', color: 'text-accent' },
+      ].map(m => (
+        <div class="flex items-start gap-6 p-4 rounded-xl hover:bg-surface-raised transition-colors">
+          <div class="w-20 shrink-0 font-mono text-sm text-text-muted">{m.month}</div>
+          <div>
+            <h3 class={`font-bold ${m.color}`}>{m.title}</h3>
+            <p class="text-text-muted text-sm mt-1">{m.lesson}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-8">
+      <a href={`${base}timeline/`} class="text-accent font-mono text-sm hover:underline">Read the full timeline →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-6xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-3xl font-black mb-4">Ready to build your own?</h2>
+    <p class="text-text-muted max-w-xl mx-auto mb-8">Follow the quick start guide to go from zero to a working multi-agent system in a weekend.</p>
+    <div class="flex gap-4 justify-center">
+      <a href={`${base}quick-start/`} class="px-8 py-3 bg-accent text-surface font-semibold rounded-lg hover:brightness-110 transition-all">
+        Quick Start Guide
+      </a>
+      <a href={`${base}gotchas/`} class="px-8 py-3 border border-border text-text-muted rounded-lg hover:border-accent hover:text-accent transition-all">
+        Read the Gotchas First
+      </a>
+    </div>
+  </section>
+</Base>
