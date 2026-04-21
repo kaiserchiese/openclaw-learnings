@@ -43,6 +43,8 @@ Hard-won architecture patterns from 4+ months in production:
 | [Telegram Integration](patterns/telegram-integration.md) | Forum topics as multi-channel control plane, 300 → 20 messages/day |
 | [Memory Management](patterns/memory-management.md) | Persistent memory, dreaming with limits, self-improvement loops |
 | [Windows Server Setup](patterns/windows-server-setup.md) | NSSM, path gotchas, RAM budgeting, Docker on Windows |
+| [Claude Code Workflow](patterns/claude-code-workflow.md) | Rules, hooks, skills, memory, agent delegation — patterns from 4+ months |
+| [Claude Code + OpenClaw](patterns/claude-code-plus-openclaw.md) | How both systems complement: dev (interactive) + ops (autonomous) for $27/month |
 
 ## Use cases
 
