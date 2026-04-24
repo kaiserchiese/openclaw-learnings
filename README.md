@@ -34,7 +34,7 @@ Windows Server 2025 | 16GB RAM | GTX 1080
 
 ## Patterns
 
-Hard-won architecture patterns from 4+ months in production:
+Hard-won architecture patterns from 5 months in production:
 
 | Pattern | TL;DR |
 |---------|-------|
@@ -43,7 +43,7 @@ Hard-won architecture patterns from 4+ months in production:
 | [Telegram Integration](patterns/telegram-integration.md) | Forum topics as multi-channel control plane, 300 → 20 messages/day |
 | [Memory Management](patterns/memory-management.md) | Persistent memory, dreaming with limits, self-improvement loops |
 | [Windows Server Setup](patterns/windows-server-setup.md) | NSSM, path gotchas, RAM budgeting, Docker on Windows |
-| [Claude Code Workflow](patterns/claude-code-workflow.md) | Rules, hooks, skills, memory, agent delegation — patterns from 4+ months |
+| [Claude Code Workflow](patterns/claude-code-workflow.md) | Rules, hooks, skills, memory, agent delegation — patterns from 5 months |
 | [Claude Code + OpenClaw](patterns/claude-code-plus-openclaw.md) | How both systems complement: dev (interactive) + ops (autonomous) for $27/month |
 
 ## Use cases
@@ -159,6 +159,22 @@ ollama pull nomic-embed-text
     Vertex AI      Ollama       OpenRouter
     (Gemini)    (embeddings)   (fallback)
 ```
+
+---
+
+## Work with me
+
+I'm **Pio Iglesias** — I built and maintain this entire system. If you want something similar for your company or project, I can help:
+
+- **Full setup**: Multi-agent system from scratch, tailored to your infrastructure and budget
+- **Consulting**: Architecture review, cost optimization, model routing strategy
+- **Custom agents**: Purpose-built AI agents for your specific workflows (content, data, DevOps, social)
+- **Migration**: Move from expensive cloud AI setups to self-hosted with 80%+ cost reduction
+
+**Reach out:**
+- LinkedIn: [Pio Iglesias](https://www.linkedin.com/in/pioiglesias/)
+- Twitter: [@pioiglest](https://twitter.com/pioiglest)
+- GitHub: [@kaiserchiese](https://github.com/kaiserchiese)
 
 ---
 
