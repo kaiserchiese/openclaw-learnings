@@ -1,11 +1,11 @@
 # Project Status - openclaw-learnings
 
-## Health Check (2026-06-01 07:47)
-- **Crons:** `learnings:daily-share` is ENABLED.
+## Health Check (2026-06-12 04:30 GMT+2)
+- **Crons:** `learnings:daily-share` is MISSING or NOT ENABLED (not found in scheduler).
 - **Documentation:** README.md is up to date.
-- **Drafts:** 17 LinkedIn drafts in `drafts/` directory. Latest draft for 2026-05-28.
-- **Git:** Workspace is on branch `feature/semantic-chunking`. Sync pending (many untracked files).
+- **Drafts:** LinkedIn/Twitter drafts in `drafts/` directory up to 2026-06-11.
+- **Git:** Workspace is on branch `main`. Latest commit: `6e17a9d` ("content: add generated LinkedIn drafts and status (AI journey pipeline)").
 
 ## Next Steps
-- Generate LinkedIn draft for 2026-06-01 (Pillar: Architecture Recap).
-- Review git sync cron.
+- Review missing `learnings:daily-share` cron setup.
+- Commit and organize drafts from `drafts/` (June 03-11).
