@@ -10,5 +10,5 @@ Ralph lee este archivo DESPUÉS de SPEC.md. Formato: `- [ ] [TIPO] Título` + l�
   verify: npm run build exit 0 + URL del artículo en dist/
 - [x] [CONTENT] Crear borradores de contenido para LinkedIn/Twitter de hoy (2026-06-17), commitear drafts acumulados (jun 15-17) y enviarlos a revisión a Thread 6 / topic 58959. (Hecho: git commit 8b2690c, enviado a Thread 6)
   verify: git -C projects/openclaw-learnings status sin drafts sin trackear + mensaje enviado a Thread 6 / topic 58959
-- [ ] [DOCS] Actualizar STATUS.md al día de hoy (2026-06-17) con la salud del sistema, crons activos y el último commit del repositorio.
-  verify: STATUS.md cita la rama correcta + commit + fecha de actualización a 2026-06-17
+- [x] [DOCS] Actualizar STATUS.md al día de hoy (2026-06-23) con la salud del sistema, crons activos y el último commit del repositorio. (Hecho: commit 7cbbf3c)
+  verify: STATUS.md cita la rama correcta + commit + fecha de actualización a 2026-06-23
